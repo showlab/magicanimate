@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MagicAnimate: Temporally Consistent Human Image Animation using Diffusion Model</title>
+
+  <script type="module"
+          src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick-theme.css"/>
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+      </div>
+      <div class="container has-text-centered">
+        <h1 class="title is-2 publication-title">
+          MagicAnimate:
+        </h1>
+        <h3 class="title is-3 publication-title">
+          Temporally Consistent Human Image Animation using Diffusion Model
+        </h3>
+        <div class="is-size-5 publication-authors">
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=-4iADzMAAAAJ&hl=en">Zhongcong Xu</a><sup>1</sup>, </div>
+          <div class="author-block"><a href="http://jeff95.me/">Jianfeng Zhang</a><sup>2</sup>, </div>
+          <div class="author-block"><a href="https://scholar.google.com.sg/citations?user=8gm-CYYAAAAJ&hl=en">Jun Hao Liew</a><sup>2</sup>, </div>
+          <div class="author-block"><a href="https://hanshuyan.github.io/">Hanshu Yan</a><sup>2</sup>, </div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=stQQf7wAAAAJ&hl=en">Jia-Wei Liu</a><sup>1</sup>, </div>
+          <div class="author-block"><a href="https://zhangchenxu528.github.io/">Chenxu Zhang</a><sup>2</sup>, </div>
+          <div class="author-block"><a href="https://sites.google.com/site/jshfeng/home">Jiashi Feng</a><sup>2</sup>, </div>
+          <div class="author-block"><a href="https://sites.google.com/view/showlab">Mike Zheng Shou</a><sup>1</sup></div>
+         
+        </div>
+
+        <div class="is-size-5 publication-authors">
+          <span class="author-block">&nbsp&nbsp<sup>1</sup>Show Lab, National University of Singapore</span>
+          <span class="author-block">&nbsp&nbsp<sup>2</sup>Bytedance</span>
+        </div>
+
+        <div class="column has-text-centered">
+          <div class="publication-links">
+            <!-- PDF Link. -->
+            <span class="link-block">
+                <a href="https://arxiv.org/abs/2311."
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/magic-research/magic-animate"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>
+            <!-- <span class="link-block">
+              <a href="https://youtu.be/UN7W5oKmWNA"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                </span>
+                <span>Video</span>
+                </a>
+            </span> -->
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths">
+      <h2 class="subtitle has-text-justified">
+        <b>TL;DR:</b> We propose MagicAnimate, a diffusion-based human image animation framework that aims at enhancing temporal consistency, preserving reference image faithfully, and improving animation fidelity.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-2, columns is-centered">Video Results</h2>
+    <hr>
+    <center>
+      <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b>Animating Human Image</h2>
+      <p>
+        MagicAnimate aims at animating the reference image adhering to the motion sequences with temporal consistency.
+      </p>
+    </center>
+    <center>
+      <table class="center">
+        <tr>
+          <td width=16.5% style="text-align:center;">Reference</td>
+          <td width=16.5% style="text-align:center;">Motion</td>
+          <td width=16.5% style="text-align:center;">Animation</td>
+          <td style="padding-left: 5px; padding-right: 5px;"></td>
+          <td width=16.5% style="text-align:center;">Reference</td>
+          <td width=16.5% style="text-align:center;">Motion</td>
+          <td width=16.5% style="text-align:center;">Animation</td>
+        </tr>
+      </table>
+    </center>
+  
+    <table class="center">
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/teaser/t1.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/teaser/t4.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/teaser/t3.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/teaser/t2.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+    </table>
+
+    <!-- Begin of qualitative comparisons -->
+    <hr>
+    <center>
+      <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b>Qualitative Comparisons</h2>
+      <p>
+        Video resutls for comparisons between MagicAnimate and baselines.
+      </p>
+    </center>
+
+
+    <table class="center">
+      <tr>
+        <td width=14% style="text-align:center;">Reference</td>
+        <td width=14% style="text-align:center;">TPS</td>
+        <td width=14% style="text-align:center;">MRAA</td>
+        <td width=14% style="text-align:center;">IPA+CtrlN</td>
+        <td width=14% style="text-align:center;">IPA+CtrlN-V</td>
+        <td width=14% style="text-align:center;">DisCo</td>
+        <td width=14% style="text-align:center;">Ours</td>
+      </tr>
+      <tr>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ref/201_021_1x1_ref.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/tps/201_021_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/mraa/201_021_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln/201_021_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln_v/201_021_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/disco/201_021_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ours/201_021_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ref/00337_ref.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/tps/00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/mraa/00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln/00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln_v/00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/disco/00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ours/00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ref/DsrxbqFo41k_019914_020055_ref.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/tps/DsrxbqFo41k_019914_020055_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/mraa/DsrxbqFo41k_019914_020055_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln/DsrxbqFo41k_019914_020055_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln_v/DsrxbqFo41k_019914_020055_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/disco/DsrxbqFo41k_019914_020055_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ours/DsrxbqFo41k_019914_020055_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ref/Depn_GsxSqo_014520_014730_ref.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/tps/Depn_GsxSqo_014520_014730_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/mraa/Depn_GsxSqo_014520_014730_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln/Depn_GsxSqo_014520_014730_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ipa_ctrln_v/Depn_GsxSqo_014520_014730_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/disco/Depn_GsxSqo_014520_014730_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=14%><video muted autoplay="autoplay" loop="loop" src="assets/qual/ours/Depn_GsxSqo_014520_014730_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+    </table>
+    <!-- End of qualitative comparisons -->
+
+
+    <hr>
+    <!-- Begin of cross-id animation -->
+    <center>
+      <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> Cross-ID Animation</h2>
+      <p>
+        Comprisons between MagicAnimate and SOTA baselines for cross-ID animation, i.e., aniamting reference images using motion sequences from different videos. We show video results for three identities and two motion sequences.
+      </p>
+    </center>
+    <br>
+
+    <table class="center">
+      <tr>
+        <td width=12.5% style="text-align:center;"><b></b></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=50% style="text-align:center;"><b>Motion Sequence 1</b></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=45% style="text-align:center;"><b>Motion Sequence 2</b></td>
+      </tr>
+    </table>
+    <table class="center">
+      <tr>
+        <td width=12.5% style="text-align:center;">Reference</td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5% style="text-align:center;">MRAA*</td>
+        <td width=12.5% style="text-align:center;">DisCo</td>
+        <td width=12.5% style="text-align:center;">Ours</td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5% style="text-align:center;">MRAA*</td>
+        <td width=12.5% style="text-align:center;">DisCo</td>
+        <td width=12.5% style="text-align:center;">Ours</td>
+      </tr>
+      <tr>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ref/203_006_1x1.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/mraa/0002_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/disco/0002_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ours/0002_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/mraa/0002_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/disco/0002_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ours/0002_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ref/ref0.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/mraa/ref0_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/disco/ref0_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ours/ref0_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/mraa/ref0_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/disco/ref0_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ours/ref0_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+       
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ref/ref3.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/mraa/ref3_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/disco/ref3_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ours/ref3_202_007_1x1_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 2px; padding-right: 2px;"></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/mraa/ref3_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/disco/ref3_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+        <td width=12.5%><video muted autoplay="autoplay" loop="loop" src="assets/qual_cross_id/ours/ref3_00337_w_motion.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+    </table>
+    <!-- End of cross-id-->
+    <hr>
+    <br>
+
+    <h2 class="title is-2, columns is-centered">Applications</h2>
+    <!-- Begin of unseen domain animation -->
+    <hr>
+    <center>
+      <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> Unseen Domain Animation</h2>
+      <p>
+        Animating unseen domain images such as oil painting and movie character to perform running or doing Yoga.
+      </p>
+    </center>
+    <center>
+    <table class="center">
+      <tr>
+        <td width=16.5% style="text-align:center;">Reference</td>
+        <td width=16.5% style="text-align:center;">Motion</td>
+        <td width=16.5% style="text-align:center;">Animation</td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td width=16.5% style="text-align:center;">Reference</td>
+        <td width=16.5% style="text-align:center;">Motion</td>
+        <td width=16.5% style="text-align:center;">Animation</td>
+      </tr>
+    </table>
+    </center>
+
+    <table class="center">
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/unseen/monalisa_running.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/unseen/monalisa_yoga.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/unseen/vermeer_running.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/unseen/vermeer_yoga.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/unseen/test_net3_running.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/unseen/test_net3_yoga.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+    </table>
+    <!-- End of unseen domain animation -->
+
+    <!-- Begin of DALLE3 animation -->
+    <hr>
+    <center>
+      <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> Combining MagicAnimate with T2I Diffusion Model</h2>
+      <p>
+        Animating reference images generated by DALLE3 to perform various actions. Text prompt for each reference image is shown below each row of the video.
+      </p>
+    </center>
+    <center>
+    <table class="center">
+      <tr>
+        <td width=16.5% style="text-align:center;">Reference</td>
+        <td width=16.5% style="text-align:center;">Motion</td>
+        <td width=16.5% style="text-align:center;">Animation</td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td width=16.5% style="text-align:center;">Reference</td>
+        <td width=16.5% style="text-align:center;">Motion</td>
+        <td width=16.5% style="text-align:center;">Animation</td>
+      </tr>
+    </table>
+    </center>
+
+    <table class="center">
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/dalle/dalle2_dancing.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/dalle/dalle2_running.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+    </table>
+    <center>
+      <table class="center">
+        <tr>
+          <td width=100% style="text-align:center;font-family:'Times New Roman',serif;font-style:italic">"A woman doing yoga in the universe, surrounded by supernova."</td>
+        </tr>
+      </table>
+    </center>
+    <br>
+    <table class="center">
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/dalle/dalle8_running.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/dalle/dalle8_dancing.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+    </table>
+    <center>
+      <table class="center">
+        <tr>
+          <td width=100% style="text-align:center;font-family:'Times New Roman',serif;font-style:italic">"a man standing on top of a mountain, surrounded by ancient remains."</td>
+        </tr>
+      </table>
+    </center>
+    <br>
+    <table class="center">
+      <tr>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/dalle/dalle11_rotation.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td><video muted autoplay="autoplay" loop="loop" src="assets/app/dalle/dalle11_running.mp4" style="width: 100%; height: auto;"></video></td>
+      </tr>
+    </table>
+    <center>
+      <table class="center">
+        <tr>
+          <td width=100% style="text-align:center;font-family:'Times New Roman',serif;font-style:italic">"A woman researcher in the space station."</td>
+        </tr>
+      </table>
+    </center>
+    <!-- End of DALLE3 animation -->
+
+
+    <!-- Begin of audio-guided avatar generation -->
+    <hr>
+    <center>
+      <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> Multi-person Animation</h2>
+      <p>
+        Animating multi-person following the given motion.
+      </p>
+    </center>
+    <center>
+      <table class="center">
+        <tr>
+          <td style="padding-left: 40px; padding-right: 40px;"></td>
+          <td width=33.3% style="text-align:center;">Reference</td>
+          <td width=33.3% style="text-align:center;">Motion</td>
+          <td width=33.3% style="text-align:center;">Animation</td>
+          <td style="padding-left: 40px; padding-right: 40px;"></td>
+        </tr>
+      </table>
+    </center>
+  
+    <table class="center">
+      <tr>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td width=80%><video muted autoplay="autoplay" loop="loop" src="assets/app/multi/multi_dancing.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+      </tr>
+      <tr>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td width=80%><video muted autoplay="autoplay" loop="loop" src="assets/app/multi/multi_dancing1.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+      </tr>
+      <tr>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+        <td width=80%><video muted autoplay="autoplay" loop="loop" src="assets/app/multi/multi_dancing3.mp4" style="width: 100%; height: auto;"></video></td>
+        <td style="padding-left: 5px; padding-right: 5px;"></td>
+      </tr>
+    </table>
+    <hr>
+    <!-- End of audio-guided avatar generation -->
+
+
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths">
+        <h2 class="title is-2, columns is-centered">Pipeline</h2>
+      <br>
+      <h2 class="subtitle has-text-justified">
+        <figure style="width: 100%;">
+          <a href="assets/figure/Framework.png">
+              <img width="100%" src="assets/figure/Framework.png">
+          </a>
+        </figure>
+      </h2>
+    </div>
+  </div>
+  Given a reference image and the target DensePose motion sequence, MagicAnimate employs a video diffusion model and an appearance encoder for temporal modeling and identity preserving, respectively (<b>left panel</b>). To support long video animation, we devise a simple video fusion strategy that produces smooth video transition during inference (<b>right panel</b>).
+</div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container content is-max-desktop">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{xu2023magicanimate,
+    author = {Xu, Zhongcong and Zhang, Jianfeng and Liew, Jun Hao and Yan, Hanshu and Liu, Jia-Wei and Zhang, Chenxu and Feng, Jiashi and Shou, Mike Zheng},
+    title = {MagicAnimate: Temporally Consistent Human Image Animation using Diffusion Model},
+    booktile = {arxiv}
+    year = {2023}
+}</code></pre>
+  </div>
+</section>
+
+<script type="text/javascript" src="./static/slick/slick.min.js"></script>
+</body>
+</html>
+
+<style>
+  .videoContainer {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .videoContainer video.mainVideo {
+    width: 100%;
+    height: auto;
+  }
+
+  .videoContainer video.overlayVideo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40%; /* Adjust this value to make video2 smaller or larger */
+  }
+</style>
